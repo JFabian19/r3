@@ -12,35 +12,34 @@ export interface Category {
   items: Dish[];
 }
 
-const anticuchoSide = "Papa, choclo y ensalada";
-const grillSide = "Papa, arroz, choclo y ensalada";
+const grillSide = "Papa + arroz + choclo + ensalada";
 
 export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "tradicionales", nombre: "Tradicionales", etiqueta: "Los favoritos de la casa",
     items: [
-      { numero: 1, nombre: "3 palos de anticucho o 3 brochetas de pollo", descripcion: anticuchoSide, precio: "S/ 11.00" },
-      { numero: 2, nombre: "2 palos de anticucho o 2 brochetas de pollo", descripcion: anticuchoSide, precio: "S/ 8.00" },
-      { numero: 3, nombre: "Pancita", descripcion: anticuchoSide, precio: "S/ 10.00" },
-      { numero: 4, nombre: "Rachi", descripcion: anticuchoSide, precio: "S/ 15.00" },
-      { numero: 5, nombre: "Molleja", descripcion: anticuchoSide, precio: "S/ 12.00" },
+      { numero: 1, nombre: "3 palos de anticucho o 3 brochetas de pollo", descripcion: grillSide, precio: "S/ 11.00" },
+      { numero: 2, nombre: "2 palos de anticucho o 2 brochetas de pollo", descripcion: grillSide, precio: "S/ 8.00" },
+      { numero: 3, nombre: "Pancita", descripcion: grillSide, precio: "S/ 10.00" },
+      { numero: 4, nombre: "Rachi", descripcion: grillSide, precio: "S/ 15.00" },
+      { numero: 5, nombre: "Molleja", descripcion: grillSide, precio: "S/ 12.00" },
     ],
   },
   {
     id: "mixtos", nombre: "Mixtos", etiqueta: "Combina tus preferidos",
     items: [
-      { numero: 6, nombre: "1 palo de anticucho + pancita", descripcion: anticuchoSide, precio: "S/ 8.00" },
-      { numero: 7, nombre: "2 palos de anticucho + pancita", descripcion: anticuchoSide, precio: "S/ 11.00" },
-      { numero: 8, nombre: "2 palos de anticucho + rachi", descripcion: anticuchoSide, precio: "S/ 15.00" },
-      { numero: 9, nombre: "2 palos de anticucho + molleja", descripcion: anticuchoSide, precio: "S/ 15.00" },
-      { numero: 10, nombre: "Pancita + molleja", descripcion: anticuchoSide, precio: "S/ 13.00" },
-      { numero: 11, nombre: "Rachi + molleja", descripcion: anticuchoSide, precio: "S/ 15.00" },
-      { numero: 12, nombre: "Rachi + pancita", descripcion: anticuchoSide, precio: "S/ 15.00" },
-      { numero: 13, nombre: "Rachi + pancita + molleja", descripcion: anticuchoSide, precio: "S/ 17.00" },
-      { numero: 14, nombre: "1 palo de anticucho + pancita + molleja", descripcion: anticuchoSide, precio: "S/ 17.00" },
-      { numero: 15, nombre: "1 palo de anticucho + rachi + pancita", descripcion: anticuchoSide, precio: "S/ 17.00" },
-      { numero: 16, nombre: "1 palo de anticucho + rachi + molleja", descripcion: anticuchoSide, precio: "S/ 17.00" },
-      { numero: 17, nombre: "1 palo de anticucho + rachi + pancita + molleja", descripcion: anticuchoSide, precio: "S/ 20.00" },
+      { numero: 6, nombre: "1 palo de anticucho + pancita", descripcion: grillSide, precio: "S/ 8.00" },
+      { numero: 7, nombre: "2 palos de anticucho + pancita", descripcion: grillSide, precio: "S/ 11.00" },
+      { numero: 8, nombre: "2 palos de anticucho + rachi", descripcion: grillSide, precio: "S/ 15.00" },
+      { numero: 9, nombre: "2 palos de anticucho + molleja", descripcion: grillSide, precio: "S/ 15.00" },
+      { numero: 10, nombre: "Pancita + molleja", descripcion: grillSide, precio: "S/ 13.00" },
+      { numero: 11, nombre: "Rachi + molleja", descripcion: grillSide, precio: "S/ 15.00" },
+      { numero: 12, nombre: "Rachi + pancita", descripcion: grillSide, precio: "S/ 15.00" },
+      { numero: 13, nombre: "Rachi + pancita + molleja", descripcion: grillSide, precio: "S/ 17.00" },
+      { numero: 14, nombre: "1 palo de anticucho + pancita + molleja", descripcion: grillSide, precio: "S/ 17.00" },
+      { numero: 15, nombre: "1 palo de anticucho + rachi + pancita", descripcion: grillSide, precio: "S/ 17.00" },
+      { numero: 16, nombre: "1 palo de anticucho + rachi + molleja", descripcion: grillSide, precio: "S/ 17.00" },
+      { numero: 17, nombre: "1 palo de anticucho + rachi + pancita + molleja", descripcion: grillSide, precio: "S/ 20.00" },
     ],
   },
   {

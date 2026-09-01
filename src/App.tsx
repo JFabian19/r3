@@ -175,8 +175,23 @@ export default function App() {
 
       <main>
         <section className="hero" id="inicio">
-          <div className="flame-field" aria-hidden="true">
-            {["one", "two", "three", "four", "five", "six", "seven"].map((flame) => <Flame className={`background-flame flame-${flame}`} fill="currentColor" strokeWidth={1.35} key={flame} />)}
+          <div className="grill-atmosphere" aria-hidden="true">
+            <div className="ember-bed" />
+            <div className="grill-fire-photo">
+              <img className="fire-photo-glow" src="/grill-fire-realistic.png" alt="" />
+              <img className="fire-photo-main" src="/grill-fire-realistic.png" alt="" />
+            </div>
+            <div className="grill-sparks">
+              {Array.from({ length: 12 }, (_, spark) => <i key={spark} />)}
+            </div>
+            <div className="ash-field">
+              {Array.from({ length: 20 }, (_, ash) => <i key={ash} />)}
+            </div>
+            {["one", "two", "three", "four", "five", "six", "seven", "eight"].map((plume) => (
+              <div className={`smoke-plume smoke-${plume}`} key={plume}>
+                <span /><span /><span />
+              </div>
+            ))}
           </div>
           <span className="eyebrow"><Flame size={14} fill="currentColor" /> Carta digital</span>
           <div className="logo-card"><img src={LOGO_PATH} alt="Logo original de R3 Carnes y Parrillas" /></div>
@@ -204,8 +219,8 @@ export default function App() {
               <div className="dish-list">
                 {category.items.map((dish) => (
                   <article className="dish-card" key={`${category.id}-${dish.nombre}`}>
-                    <div className="dish-image-placeholder" role="img" aria-label={`Espacio reservado para la imagen de ${dish.nombre}`}>
-                      <span>Acá va la imagen</span>
+                    <div className="dish-image">
+                      <img src={dish.imagen} alt={dish.nombre} loading="lazy" decoding="async" />
                     </div>
                     <div className="dish-copy"><h3>{dish.nombre}</h3>{dish.descripcion && <p>{dish.descripcion}</p>}</div>
                     <div className="dish-order"><span>Precio</span><strong>{dish.precio}</strong>{category.id !== "bebidas" && category.id !== "adicionales" && <small className="packaging-note">+ S/ 1 envase</small>}<motion.button whileTap={{ scale: 0.92 }} onClick={() => requestDish(dish, category.id)} aria-label={`Pedir ${dish.nombre}`}><Plus size={14} strokeWidth={3} /> Pedir</motion.button></div>

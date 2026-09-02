@@ -4,14 +4,17 @@ import { AnimatePresence, motion } from "motion/react";
 import { DEFAULT_MENU_DATA, Dish } from "./data/menuData";
 import { submitSheetData } from "./services/googleSheets";
 
-const RESTAURANTE_NAME = "R3 Carnes y Parrillas";
+const RESTAURANTE_NAME = "R73 Carnes y Parrillas";
 const WHATSAPP_NUMBER = "51959682826";
 const WHATSAPP_DISPLAY = "959 682 826";
-const LOGO_PATH = "/r3-logo.png";
-const WHATSAPP_ICON_PATH = "/whatsapp-icon.png";
-const INSTAGRAM_ICON_PATH = "/instagram-icon.png";
+const LOGO_PATH = "/r73-logo.webp";
+const WHATSAPP_ICON_PATH = "/whatsapp-icon.webp";
+const INSTAGRAM_ICON_PATH = "/instagram-icon.webp";
+const FACEBOOK_ICON_PATH = "/facebook-icon.webp";
 const INSTAGRAM_URL = "https://www.instagram.com/r73parrillas?igsi=ZjBxZDAxbHl3b29i";
-const MARQUEE_TEXT = "AQUÍ EL FUEGO TIENE SABOR • CORTES QUE DESPIERTAN EL INSTINTO • R3 CARNES Y PARRILLAS • ";
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61578606261771&utm_source=ig&utm_medium=social&utm_content=link_in_bio&_rdr";
+const MAPS_URL = "https://www.google.com/maps/place/R73/@-12.0094693,-77.1210666,13.34z/data=!4m6!3m5!1s0x9105cf007babe7ef:0xa25766ba80c77c3!8m2!3d-12.0138083!4d-77.0872824!16s%2Fg%2F11zfflxjh7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D";
+const MARQUEE_TEXT = "AQUÍ EL FUEGO TIENE SABOR • CORTES QUE DESPIERTAN EL INSTINTO • R73 CARNES Y PARRILLAS • ";
 const SIDE_OPTIONS = ["Papa", "Arroz", "Choclo", "Ensalada"];
 const CREAM_OPTIONS = ["Ají de la casa", "Mayonesa", "Kétchup", "Mostaza"];
 const PICKUP_FREE_LABEL = "Recojo en tienda gratis";
@@ -39,6 +42,7 @@ export default function App() {
   const [showBirthdayForm, setShowBirthdayForm] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [pendingDish, setPendingDish] = useState<PendingDish | null>(null);
+  const [previewDish, setPreviewDish] = useState<Dish | null>(null);
   const [selectedSides, setSelectedSides] = useState<string[]>([...SIDE_OPTIONS]);
   const [selectedCreams, setSelectedCreams] = useState<string[]>([]);
   const [checkoutData, setCheckoutData] = useState({ fulfillment: "delivery" as Fulfillment, nombre: "", telefono: "", direccion: "", distrito: "", metodoPago: "" });
@@ -164,9 +168,9 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <a href="#inicio" className="brand-mini" aria-label="Volver al inicio"><img src={LOGO_PATH} alt="R3 Carnes y Parrillas" /></a>
+        <a href="#inicio" className="brand-mini" aria-label="Volver al inicio"><img src={LOGO_PATH} alt="R73 Carnes y Parrillas" /></a>
         <div className="top-actions">
-          <a className="icon-button" href="https://www.google.com/maps/search/?api=1&query=R3+Carnes+y+Parrillas" target="_blank" rel="noreferrer" aria-label="Ver ubicación"><MapPin size={19} /></a>
+          <a className="icon-button" href={MAPS_URL} target="_blank" rel="noreferrer" aria-label="Ver ubicación de R73"><MapPin size={19} /></a>
           <button className="icon-button cart-icon" onClick={() => cartCount && setShowSummary(true)} aria-label="Abrir pedido"><ShoppingBag size={19} />{cartCount > 0 && <span>{cartCount}</span>}</button>
         </div>
       </header>
@@ -178,8 +182,8 @@ export default function App() {
           <div className="grill-atmosphere" aria-hidden="true">
             <div className="ember-bed" />
             <div className="grill-fire-photo">
-              <img className="fire-photo-glow" src="/grill-fire-realistic.png" alt="" />
-              <img className="fire-photo-main" src="/grill-fire-realistic.png" alt="" />
+              <img className="fire-photo-glow" src="/grill-fire-realistic.webp" alt="" />
+              <img className="fire-photo-main" src="/grill-fire-realistic.webp" alt="" />
             </div>
             <div className="grill-sparks">
               {Array.from({ length: 12 }, (_, spark) => <i key={spark} />)}
@@ -194,13 +198,14 @@ export default function App() {
             ))}
           </div>
           <span className="eyebrow"><Flame size={14} fill="currentColor" /> Carta digital</span>
-          <div className="logo-card"><img src={LOGO_PATH} alt="Logo original de R3 Carnes y Parrillas" /></div>
+          <div className="logo-card"><img src={LOGO_PATH} alt="Logo original de R73 Carnes y Parrillas" /></div>
           <h1>El sabor de la parrilla<br /><em>en tus manos</em></h1>
           <p>Elige tus platos, arma tu pedido y envíalo directo por WhatsApp.</p>
           <div className="hero-actions">
             <button className="primary-button" onClick={() => scrollToCategory("tradicionales")}>Ver la carta <ChevronRight size={17} /></button>
             <button className="whatsapp-button" onClick={openWhatsApp}><img src={WHATSAPP_ICON_PATH} alt="" /> WhatsApp</button>
             <a className="instagram-button" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><img src={INSTAGRAM_ICON_PATH} alt="" /> Síguenos en Instagram</a>
+            <a className="facebook-button" href={FACEBOOK_URL} target="_blank" rel="noreferrer"><img src={FACEBOOK_ICON_PATH} alt="" /> Síguenos en Facebook</a>
           </div>
         </section>
 
@@ -219,9 +224,11 @@ export default function App() {
               <div className="dish-list">
                 {category.items.map((dish) => (
                   <article className="dish-card" key={`${category.id}-${dish.nombre}`}>
-                    <div className="dish-image">
-                      <img src={dish.imagen} alt={dish.nombre} loading="lazy" decoding="async" />
-                    </div>
+                    <button className="dish-image" type="button" onClick={() => setPreviewDish(dish)} aria-label={`Ver imagen ampliada de ${dish.nombre}`}>
+                      <img className="dish-image-backdrop" src={dish.imagen} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                      <img className="dish-image-main" src={dish.imagen} alt={dish.nombre} loading="lazy" decoding="async" />
+                      <small className="reference-label">Imagen referencial</small>
+                    </button>
                     <div className="dish-copy"><h3>{dish.nombre}</h3>{dish.descripcion && <p>{dish.descripcion}</p>}</div>
                     <div className="dish-order"><span>Precio</span><strong>{dish.precio}</strong>{category.id !== "bebidas" && category.id !== "adicionales" && <small className="packaging-note">+ S/ 1 envase</small>}<motion.button whileTap={{ scale: 0.92 }} onClick={() => requestDish(dish, category.id)} aria-label={`Pedir ${dish.nombre}`}><Plus size={14} strokeWidth={3} /> Pedir</motion.button></div>
                   </article>
@@ -230,14 +237,24 @@ export default function App() {
             </section>
           ))}
 
-          <section className="review-card"><div><Star size={22} fill="currentColor" /><Star size={16} fill="currentColor" /><Star size={12} fill="currentColor" /></div><h2>¿Cómo estuvo todo?</h2><p>Cuéntanos sobre tu experiencia en R3.</p><button onClick={() => setShowReviewForm(true)}>Dejar una reseña</button></section>
+          <section className="review-card"><div><Star size={22} fill="currentColor" /><Star size={16} fill="currentColor" /><Star size={12} fill="currentColor" /></div><h2>¿Cómo estuvo todo?</h2><p>Cuéntanos sobre tu experiencia en R73.</p><button onClick={() => setShowReviewForm(true)}>Dejar una reseña</button></section>
         </div>
       </main>
 
-      <footer><img src={LOGO_PATH} alt="R3 Carnes y Parrillas" /><p>Parrilla encendida. Sabor inolvidable.</p><button onClick={openWhatsApp}><img src={WHATSAPP_ICON_PATH} alt="" /> {WHATSAPP_DISPLAY}</button><small>© 2026 R3 Carnes y Parrillas · Hecho por Tyma Solutions</small></footer>
+      <footer><img src={LOGO_PATH} alt="R73 Carnes y Parrillas" /><p>Parrilla encendida. Sabor inolvidable.</p><button onClick={openWhatsApp}><img src={WHATSAPP_ICON_PATH} alt="" /> {WHATSAPP_DISPLAY}</button><small>© 2026 R73 Carnes y Parrillas · Hecho por Tyma Solutions</small></footer>
 
       <AnimatePresence>{cartCount > 0 && !showSummary && (
         <motion.button initial={{ y: 90 }} animate={{ y: 0 }} exit={{ y: 90 }} className="cart-bar" onClick={() => setShowSummary(true)}><span className="cart-bag"><ShoppingBag size={20} /><b>{cartCount}</b></span><span><small>Tu pedido</small><strong>S/ {total.toFixed(2)}</strong></span><span className="cart-view">Ver pedido <ChevronRight size={17} /></span></motion.button>
+      )}</AnimatePresence>
+
+      <AnimatePresence>{previewDish && (
+        <motion.div className="image-lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={() => setPreviewDish(null)} role="dialog" aria-modal="true" aria-label={`Imagen de ${previewDish.nombre}`}>
+          <motion.div className="image-lightbox-content" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.92 }} onMouseDown={(event) => event.stopPropagation()}>
+            <button className="image-lightbox-close" type="button" onClick={() => setPreviewDish(null)} aria-label="Cerrar imagen"><X size={21} /></button>
+            <img src={previewDish.imagen} alt={previewDish.nombre} />
+            <div><strong>{previewDish.nombre}</strong><small>Imagen referencial</small></div>
+          </motion.div>
+        </motion.div>
       )}</AnimatePresence>
 
       <AnimatePresence>{pendingDish && (
@@ -306,7 +323,7 @@ export default function App() {
       )}</AnimatePresence>
 
       <AnimatePresence>{showBirthdayForm && (
-        <Modal onClose={() => setShowBirthdayForm(false)}><div className="form-intro"><Gift size={25} /><span>Un detalle para ti</span><h2>¡Celebra con R3!</h2><p>Déjanos tus datos para acompañarte en tu día especial.</p></div>{successMessage ? <div className="success-message">{successMessage}</div> : (
+        <Modal onClose={() => setShowBirthdayForm(false)}><div className="form-intro"><Gift size={25} /><span>Un detalle para ti</span><h2>¡Celebra con R73!</h2><p>Déjanos tus datos para acompañarte en tu día especial.</p></div>{successMessage ? <div className="success-message">{successMessage}</div> : (
           <form className="form-grid" onSubmit={handleBirthdaySubmit}>
             <FormField label="Nombre completo"><input required value={birthdayData.nombre} onChange={(e) => setBirthdayData({ ...birthdayData, nombre: e.target.value })} placeholder="Tu nombre" /></FormField>
             <FormField label="Teléfono"><input required inputMode="numeric" pattern="[0-9]{9,11}" value={birthdayData.telefono} onChange={(e) => setBirthdayData({ ...birthdayData, telefono: e.target.value.replace(/\D/g, "") })} placeholder="999 999 999" /></FormField>

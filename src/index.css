@@ -110,7 +110,7 @@ button,input,textarea { font:inherit; } button { cursor:pointer; }
 .section-heading span { display:block; color:var(--ember); font-size:8px; font-weight:800; letter-spacing:.18em; }.section-heading h2 { margin:1px 0 0; font:800 30px/.88 "Barlow Condensed",sans-serif; text-transform:uppercase; letter-spacing:-.01em; }.section-heading p { margin:5px 0 0; color:var(--muted); font-size:10px; }
 .dish-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; }
 .dish-card { min-width:0; overflow:hidden; display:flex; flex-direction:column; border:1px solid #e5d9c6; border-radius:17px; background:var(--paper); box-shadow:0 8px 22px rgba(61,40,16,.08); }
-.dish-image { width:100%; aspect-ratio:1.35; position:relative; overflow:hidden; padding:0; cursor:zoom-in; background:#171512; border:0; border-bottom:2px solid var(--gold); }
+.dish-image { width:100%; aspect-ratio:1; position:relative; overflow:hidden; padding:0; cursor:zoom-in; background:#171512; border:0; border-bottom:2px solid var(--gold); }
 .dish-image::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,transparent 67%,rgba(17,13,8,.25)); }
 .dish-image img { position:absolute; inset:0; width:100%; height:100%; display:block; object-position:center; }
 .dish-image .dish-image-backdrop { z-index:0; object-fit:cover; filter:blur(15px) saturate(.82) brightness(.72); transform:scale(1.16); opacity:.82; }
@@ -118,7 +118,7 @@ button,input,textarea { font:inherit; } button { cursor:pointer; }
 .reference-label { position:absolute; z-index:1; right:7px; bottom:6px; padding:3px 6px; border-radius:6px; color:rgba(255,255,255,.92); background:rgba(15,15,14,.72); backdrop-filter:blur(3px); font-size:7px; font-weight:700; line-height:1; letter-spacing:.03em; text-transform:uppercase; }
 .dish-card:hover .dish-image-main { transform:scale(1.035); }
 .image-lightbox { position:fixed; z-index:160; inset:0; display:grid; place-items:center; padding:20px; background:rgba(7,7,6,.88); backdrop-filter:blur(8px); }
-.image-lightbox-content { width:min(94vw,720px); max-height:90vh; position:relative; overflow:hidden; border:1px solid rgba(230,167,68,.42); border-radius:20px; background:#11110f; box-shadow:0 24px 80px rgba(0,0,0,.55); }
+.image-lightbox-content { width:min(94vw,680px); max-height:90vh; position:relative; overflow:hidden; border:1px solid rgba(230,167,68,.42); border-radius:20px; background:#11110f; box-shadow:0 24px 80px rgba(0,0,0,.55); }
 .image-lightbox-content>img { width:100%; max-height:76vh; display:block; object-fit:contain; background:#0d0d0c; }
 .image-lightbox-content>div { padding:13px 16px 15px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:white; }
 .image-lightbox-content strong { font:700 18px/1.1 "Barlow Condensed",sans-serif; text-transform:uppercase; }

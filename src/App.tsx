@@ -84,7 +84,7 @@ export default function App() {
   const requestDish = (dish: Dish, categoryId: string) => {
     if (!dish.descripcion?.toLowerCase().includes("papa")) { addToCart(dish, categoryId); return; }
     setPendingDish({ dish, categoryId });
-    setSelectedSides([...SIDE_OPTIONS]);
+    setSelectedSides([...(dish.sideOptions ?? SIDE_OPTIONS)]);
     setSelectedCreams([]);
   };
 
@@ -261,9 +261,9 @@ export default function App() {
         <Modal onClose={() => setPendingDish(null)}>
           <div className="modal-heading customization-heading"><span>Arma tu plato</span><h2>{pendingDish.dish.nombre}</h2><p>Personaliza los acompañamientos antes de agregarlo.</p></div>
           <div className="customization-group">
-            <div className="customization-title"><h3>Guarniciones</h3><small>Las cuatro vienen seleccionadas</small></div>
+            <div className="customization-title"><h3>Guarniciones</h3><small>Todas vienen seleccionadas</small></div>
             <div className="customization-options">
-              {SIDE_OPTIONS.map((option) => {
+              {(pendingDish.dish.sideOptions ?? SIDE_OPTIONS).map((option) => {
                 const selected = selectedSides.includes(option);
                 return <button type="button" className={selected ? "selected" : ""} aria-pressed={selected} onClick={() => toggleSelection(option, selectedSides, setSelectedSides)} key={option}><span>{selected && <Check size={13} strokeWidth={3} />}</span>{option}</button>;
               })}

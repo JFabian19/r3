@@ -4,6 +4,7 @@ export interface Dish {
   descripcion?: string;
   precio: string;
   imagen: string;
+  sideOptions?: string[];
 }
 
 export interface Category {
@@ -14,6 +15,8 @@ export interface Category {
 }
 
 const grillSide = "Papa + arroz + choclo + ensalada";
+const grillSideWithoutRice = "Papa + choclo + ensalada";
+const noRiceSides = ["Papa", "Choclo", "Ensalada"];
 const menuImage = (file: string) => `/menu-images/${file}`;
 
 export const DEFAULT_MENU_DATA: Category[] = [
@@ -22,26 +25,26 @@ export const DEFAULT_MENU_DATA: Category[] = [
     items: [
       { numero: 1, nombre: "3 palos de anticuchos o 3 brochetas de pollo", descripcion: grillSide, precio: "S/ 15.00", imagen: menuImage("trad-01-anticuchos.webp") },
       { numero: 2, nombre: "2 palos de anticucho o 2 brochetas de pollo", descripcion: grillSide, precio: "S/ 10.00", imagen: menuImage("trad-02-anticuchos.webp") },
-      { numero: 3, nombre: "Pancita", descripcion: grillSide, precio: "S/ 12.00", imagen: menuImage("trad-03-pancita.webp") },
-      { numero: 4, nombre: "Rachi", descripcion: grillSide, precio: "S/ 18.00", imagen: menuImage("trad-04-rachi.webp") },
-      { numero: 5, nombre: "Molleja", descripcion: grillSide, precio: "S/ 14.00", imagen: menuImage("trad-05-molleja.webp") },
+      { numero: 3, nombre: "Pancita", descripcion: grillSideWithoutRice, precio: "S/ 12.00", imagen: menuImage("trad-03-pancita.webp"), sideOptions: noRiceSides },
+      { numero: 4, nombre: "Rachi", descripcion: grillSideWithoutRice, precio: "S/ 18.00", imagen: menuImage("trad-04-rachi.webp"), sideOptions: noRiceSides },
+      { numero: 5, nombre: "Molleja", descripcion: grillSideWithoutRice, precio: "S/ 14.00", imagen: menuImage("trad-05-molleja.webp"), sideOptions: noRiceSides },
     ],
   },
   {
     id: "mixtos", nombre: "Mixtos", etiqueta: "Combina tus preferidos",
     items: [
-      { numero: 6, nombre: "1 palo de anticucho + pancita", descripcion: grillSide, precio: "S/ 10.00", imagen: menuImage("mixto-06.webp") },
-      { numero: 7, nombre: "2 palos de anticucho + pancita", descripcion: grillSide, precio: "S/ 14.00", imagen: menuImage("mixto-07.webp") },
-      { numero: 8, nombre: "2 palos de anticucho + rachi", descripcion: grillSide, precio: "S/ 18.00", imagen: menuImage("mixto-08.webp") },
-      { numero: 9, nombre: "2 palos de anticucho + molleja", descripcion: grillSide, precio: "S/ 17.00", imagen: menuImage("mixto-09.webp") },
-      { numero: 10, nombre: "Pancita + molleja", descripcion: grillSide, precio: "S/ 15.00", imagen: menuImage("mixto-10.webp") },
-      { numero: 11, nombre: "Rachi + molleja", descripcion: grillSide, precio: "S/ 18.00", imagen: menuImage("mixto-11.webp") },
-      { numero: 12, nombre: "Rachi + pancita", descripcion: grillSide, precio: "S/ 18.00", imagen: menuImage("mixto-12.webp") },
-      { numero: 13, nombre: "Rachi + pancita + molleja", descripcion: grillSide, precio: "S/ 20.00", imagen: menuImage("mixto-13.webp") },
-      { numero: 14, nombre: "1 palo de anticucho + pancita + molleja", descripcion: grillSide, precio: "S/ 20.00", imagen: menuImage("mixto-14.webp") },
-      { numero: 15, nombre: "1 palo de anticucho + rachi + pancita", descripcion: grillSide, precio: "S/ 20.00", imagen: menuImage("mixto-15.webp") },
-      { numero: 16, nombre: "1 palo de anticucho + rachi + molleja", descripcion: grillSide, precio: "S/ 20.00", imagen: menuImage("mixto-16.webp") },
-      { numero: 17, nombre: "1 palo de anticucho + rachi + pancita + molleja", descripcion: grillSide, precio: "S/ 22.00", imagen: menuImage("mixto-17.webp") },
+      { numero: 6, nombre: "1 palo de anticucho + pancita", descripcion: grillSideWithoutRice, precio: "S/ 10.00", imagen: menuImage("mixto-06.webp"), sideOptions: noRiceSides },
+      { numero: 7, nombre: "2 palos de anticucho + pancita", descripcion: grillSideWithoutRice, precio: "S/ 14.00", imagen: menuImage("mixto-07.webp"), sideOptions: noRiceSides },
+      { numero: 8, nombre: "2 palos de anticucho + rachi", descripcion: grillSideWithoutRice, precio: "S/ 18.00", imagen: menuImage("mixto-08.webp"), sideOptions: noRiceSides },
+      { numero: 9, nombre: "2 palos de anticucho + molleja", descripcion: grillSideWithoutRice, precio: "S/ 17.00", imagen: menuImage("mixto-09.webp"), sideOptions: noRiceSides },
+      { numero: 10, nombre: "Pancita + molleja", descripcion: grillSideWithoutRice, precio: "S/ 15.00", imagen: menuImage("mixto-10.webp"), sideOptions: noRiceSides },
+      { numero: 11, nombre: "Rachi + molleja", descripcion: grillSideWithoutRice, precio: "S/ 18.00", imagen: menuImage("mixto-11.webp"), sideOptions: noRiceSides },
+      { numero: 12, nombre: "Rachi + pancita", descripcion: grillSideWithoutRice, precio: "S/ 18.00", imagen: menuImage("mixto-12.webp"), sideOptions: noRiceSides },
+      { numero: 13, nombre: "Rachi + pancita + molleja", descripcion: grillSideWithoutRice, precio: "S/ 20.00", imagen: menuImage("mixto-13.webp"), sideOptions: noRiceSides },
+      { numero: 14, nombre: "1 palo de anticucho + pancita + molleja", descripcion: grillSideWithoutRice, precio: "S/ 20.00", imagen: menuImage("mixto-14.webp"), sideOptions: noRiceSides },
+      { numero: 15, nombre: "1 palo de anticucho + rachi + pancita", descripcion: grillSideWithoutRice, precio: "S/ 20.00", imagen: menuImage("mixto-15.webp"), sideOptions: noRiceSides },
+      { numero: 16, nombre: "1 palo de anticucho + rachi + molleja", descripcion: grillSideWithoutRice, precio: "S/ 20.00", imagen: menuImage("mixto-16.webp"), sideOptions: noRiceSides },
+      { numero: 17, nombre: "1 palo de anticucho + rachi + pancita + molleja", descripcion: grillSideWithoutRice, precio: "S/ 22.00", imagen: menuImage("mixto-17.webp"), sideOptions: noRiceSides },
     ],
   },
   {
